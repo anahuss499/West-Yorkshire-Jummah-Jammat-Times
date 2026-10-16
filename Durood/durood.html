@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Durood Counter | West Yorkshire Jummah</title>
+  <link rel="icon" type="image/png" href="/assets/images/Logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Montserrat:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="durood.css">
+</head>
+
+<body>
+  <div class="blobs" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <nav class="reader-nav" aria-label="Site navigation">
+    <a href="/index.html">Jummah times</a>
+    <a class="active" href="durood.html">Durood counter</a>
+    <a href="/quran/quran.html">Quran</a>
+  </nav>
+
+  <!-- list + add -->
+  <main id="setupScreen" class="screen setup">
+    <header class="page-head">
+      <img class="logo" src="/assets/images/Logo.png" alt="">
+      <h1 class="page-title">Durood Counter</h1>
+    </header>
+
+    <ul id="savedList" class="saved-list" hidden></ul>
+
+    <form id="setupForm" class="card glass" novalidate>
+      <textarea id="textInput" rows="3" dir="auto" placeholder="What would you like to recite?"
+        aria-label="What would you like to recite?" required></textarea>
+
+      <input id="targetInput" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="100"
+        aria-label="How many times?" required>
+      <div class="chips" role="group" aria-label="Quick amounts">
+        <button type="button" data-amount="11">11</button>
+        <button type="button" data-amount="33">33</button>
+        <button type="button" data-amount="100">100</button>
+        <button type="button" data-amount="313">313</button>
+        <button type="button" data-amount="1000">1000</button>
+      </div>
+
+      <p class="form-error" id="formError" role="alert"></p>
+
+      <div class="form-actions">
+        <button class="start" id="startBtn" type="submit" data-action="start">
+          <svg class="i fill" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg><span>Start</span>
+        </button>
+        <button class="icon-btn pill" id="addBtn" type="submit" data-action="add">
+          <svg class="i" viewBox="0 0 24 24">
+            <path d="M12 5v14M5 12h14" />
+          </svg><span>Add to list</span>
+        </button>
+        <button class="icon-btn pill" id="cancelEdit" type="button" hidden>
+          <svg class="i" viewBox="0 0 24 24">
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg><span>Cancel</span>
+        </button>
+      </div>
+    </form>
+  </main>
+
+  <!-- counter: tap anywhere -->
+  <main id="reciteScreen" class="screen recite" hidden aria-label="Counter">
+    <div class="recite-body">
+      <div class="panel glass">
+        <p class="recite-text" id="reciteText" dir="auto"></p>
+        <output id="count" class="count">0</output>
+        <p class="of-target" id="ofTarget"></p>
+        <progress id="progress" value="0" max="100" aria-label="Progress"></progress>
+      </div>
+    </div>
+
+    <div class="recite-actions glass">
+      <button id="back" class="icon-btn pill" type="button">
+        <svg class="i" viewBox="0 0 24 24">
+          <path d="M15 5l-7 7 7 7" />
+        </svg><span>Back</span>
+      </button>
+      <button id="undo" class="icon-btn pill" type="button">
+        <svg class="i" viewBox="0 0 24 24">
+          <path d="M9 14l-5-5 5-5M4 9h10.5a5.5 5.5 0 010 11H11" />
+        </svg><span>Undo</span>
+      </button>
+      <button id="reset" class="icon-btn pill" type="button">
+        <svg class="i" viewBox="0 0 24 24">
+          <path d="M4 12a8 8 0 0114-5.3L20 9M20 4v5h-5M20 12a8 8 0 01-14 5.3L4 15M4 20v-5h5" />
+        </svg><span>Reset</span>
+      </button>
+    </div>
+  </main>
+
+  <dialog id="resetDialog" class="confirm glass" aria-labelledby="resetTitle">
+    <div class="confirm-icon" aria-hidden="true">
+      <svg class="i" viewBox="0 0 24 24">
+        <path d="M4 12a8 8 0 0114-5.3L20 9M20 4v5h-5M20 12a8 8 0 01-14 5.3L4 15M4 20v-5h5" />
+      </svg>
+    </div>
+    <h2 class="confirm-title" id="resetTitle">Reset count?</h2>
+    <div class="confirm-actions">
+      <button type="button" id="resetCancel" class="icon-btn pill">Cancel</button>
+      <button type="button" id="resetConfirm" class="icon-btn pill danger">Reset</button>
+    </div>
+  </dialog>
+
+  <dialog id="deleteDialog" class="confirm glass" aria-labelledby="deleteTitle">
+    <div class="confirm-icon" aria-hidden="true">
+      <svg class="i" viewBox="0 0 24 24">
+        <path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13" />
+      </svg>
+    </div>
+    <h2 class="confirm-title" id="deleteTitle">Remove recitation?</h2>
+    <div class="confirm-actions">
+      <button type="button" id="deleteCancel" class="icon-btn pill">Cancel</button>
+      <button type="button" id="deleteConfirm" class="icon-btn pill danger">Remove</button>
+    </div>
+  </dialog>
+
+  <p class="sr-only" id="announce" role="status" aria-live="polite"></p>
+  <script src="durood.js"></script>
+</body>
+
+</html>
