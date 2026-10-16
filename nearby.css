@@ -1,0 +1,266 @@
+/* Nearby masjids feature. Uses neutral colours that sit alongside the existing theme. */
+.nearby-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 0 16px;
+    margin: 12px 0;
+}
+
+#nearbyBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font: 700 15px/1 "Montserrat", system-ui, sans-serif;
+    padding: 12px 20px;
+    border-radius: 999px;
+    border: 0;
+    cursor: pointer;
+    background: #1f8f3a;
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .18);
+}
+
+#nearbyBtn:hover {
+    filter: brightness(1.08);
+}
+
+#nearbyBtn:focus-visible {
+    outline: 3px solid #7a6428;
+    outline-offset: 2px;
+}
+
+#nearby {
+    max-width: 720px;
+    margin: 8px auto 16px;
+    padding: 0 16px;
+}
+
+#nearby[hidden] {
+    display: none;
+}
+
+.nb-card {
+    position: relative;
+    background: #fff;
+    color: #222;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, .15);
+    font-family: "Montserrat", system-ui, sans-serif;
+    text-align: left;
+}
+
+.nb-card h2 {
+    margin: 0 32px 8px 0;
+    font-size: 20px;
+}
+
+.nb-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    background: transparent;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    color: #555;
+}
+
+.nb-msg {
+    margin: 0 0 14px;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+}
+
+.nb-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.nb-primary,
+.nb-secondary,
+.nb-form button {
+    font: 700 14px/1 "Montserrat", system-ui, sans-serif;
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+}
+
+.nb-primary {
+    background: #1f8f3a;
+    color: #fff;
+}
+
+.nb-secondary {
+    background: #eee;
+    color: #222;
+}
+
+.nb-or {
+    margin: 16px 0 8px;
+    font-size: 13px;
+    color: #666;
+}
+
+.nb-form {
+    display: flex;
+    gap: 8px;
+}
+
+.nb-form input {
+    flex: 1;
+    min-width: 0;
+    font: 500 16px "Montserrat", system-ui, sans-serif;
+    padding: 11px 12px;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+
+.nb-form button {
+    background: #7a6428;
+    color: #fff;
+}
+
+.nb-status {
+    min-height: 1.2em;
+    margin: 12px 0 0;
+    font-size: 13px;
+    color: #444;
+}
+
+.nb-status.error {
+    color: #b3261e;
+}
+
+.nb-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+}
+
+.nb-item {
+    border: 1px solid #e3e3e3;
+    border-radius: 12px;
+    padding: 12px 14px;
+}
+
+.nb-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: baseline;
+}
+
+.nb-dist {
+    white-space: nowrap;
+    font-weight: 800;
+    color: #1f8f3a;
+}
+
+.nb-addr {
+    font-size: 13px;
+    color: #555;
+    margin: 4px 0 8px;
+}
+
+.nb-times {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.nb-time {
+    background: #f2efe4;
+    border-radius: 8px;
+    padding: 5px 9px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.nb-time small {
+    font-weight: 500;
+    color: #7a6428;
+    margin-right: 2px;
+}
+
+.nb-time.late {
+    background: #dff3e4;
+    color: #14612a;
+}
+
+.nb-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 999px;
+}
+
+.nb-badge.ladies {
+    background: #fde2ee;
+    color: #9c1f5c;
+}
+
+.nb-badge.upd {
+    background: #ece2fb;
+    color: #5b2aa8;
+}
+
+.nb-dir {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1266c8;
+    text-decoration: none;
+}
+
+.nb-dir:hover {
+    text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+    .nb-card {
+        background: #1e1e1e;
+        color: #eee;
+    }
+
+    .nb-msg,
+    .nb-addr,
+    .nb-status {
+        color: #bbb;
+    }
+
+    .nb-item {
+        border-color: #333;
+    }
+
+    .nb-time {
+        background: #2b2820;
+    }
+
+    .nb-secondary {
+        background: #333;
+        color: #eee;
+    }
+
+    .nb-form input {
+        background: #111;
+        color: #eee;
+        border-color: #444;
+    }
+
+    .nb-close {
+        color: #bbb;
+    }
+}
