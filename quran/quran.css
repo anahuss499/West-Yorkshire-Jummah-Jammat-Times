@@ -1,0 +1,533 @@
+/* ==========================================================
+   QURAN · soft glass on the site palette
+   navy #070d1a · gold #c9a84c / #e6cf85 / #8f7530
+   (kept light for long lists and reading)
+   ========================================================== */
+@font-face {
+    font-family: "IndoPak";
+    src: url("/assets/fonts/indopak2.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --arabic: "IndoPak", "Amiri", serif;
+    --heading-ar: "Amiri", serif;
+    --body: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    --navy: #070d1a;
+    --gold: #c9a84c;
+    --gold-l: #e6cf85;
+    --gold-d: #8f7530;
+    --dark: #1c1a14;
+    --ink: #fff;
+    --muted: rgba(255, 255, 255, .72);
+    --glass: rgba(255, 255, 255, .07);
+    --glass-b: rgba(255, 255, 255, .16);
+    --glass-s: 0 8px 32px rgba(0, 0, 0, .35);
+    --panel: rgba(12, 20, 38, .55);
+    --gold-grad: linear-gradient(135deg, var(--gold-l), var(--gold) 60%, var(--gold-d));
+    --q-size: 2.2rem;
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    margin: 0
+}
+
+body {
+    background: var(--navy);
+    color: var(--ink);
+    min-height: 100vh;
+    font-family: var(--body);
+    overflow-x: hidden
+}
+
+/* colour behind the glass (same blobs as the main site) */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(38rem 38rem at 12% 8%, rgba(201, 168, 76, .32), transparent 65%),
+        radial-gradient(42rem 42rem at 92% 30%, rgba(45, 90, 190, .42), transparent 65%),
+        radial-gradient(36rem 36rem at 25% 85%, rgba(160, 44, 148, .25), transparent 65%),
+        radial-gradient(34rem 34rem at 85% 95%, rgba(201, 168, 76, .22), transparent 65%),
+        var(--navy)
+}
+
+[hidden] {
+    display: none !important
+}
+
+a {
+    color: var(--gold-l)
+}
+
+:focus-visible {
+    outline: 3px solid var(--gold-l);
+    outline-offset: 2px
+}
+
+/* nav (same as the main site) */
+.reader-nav {
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+    background: rgba(7, 13, 26, .94);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .2)
+}
+
+.reader-nav a {
+    color: #f2e5b2;
+    text-decoration: none;
+    font: 700 .8rem var(--body);
+    padding: .55rem .9rem;
+    border: 1px solid rgba(230, 207, 133, .35);
+    border-radius: 1.5rem
+}
+
+.reader-nav a:hover,
+.reader-nav a.active {
+    background: var(--gold);
+    color: var(--dark)
+}
+
+.view {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: 3rem
+}
+
+.reader-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.1rem;
+    padding: 1.5rem 1rem 1.2rem
+}
+
+.reader-header img {
+    width: 4.5rem;
+    height: 4.5rem;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid var(--glass-b);
+    background: rgba(255, 255, 255, .1);
+    box-shadow: var(--glass-s)
+}
+
+.eyebrow {
+    margin: 0 0 .25rem;
+    color: var(--gold);
+    font: 700 .75rem var(--body);
+    letter-spacing: .08em;
+    text-transform: uppercase
+}
+
+.reader-header h1 {
+    margin: 0;
+    font: 800 clamp(1.8rem, 6vw, 2.6rem) var(--body);
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: .03em
+}
+
+/* continue card */
+.continue {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 1rem 1rem;
+    padding: 1rem 1.3rem;
+    border-radius: 1.6rem;
+    background: var(--gold-grad);
+    border: 1px solid rgba(255, 255, 255, .4);
+    box-shadow: var(--glass-s), inset 0 1px 0 rgba(255, 255, 255, .5);
+    color: var(--dark);
+    text-decoration: none;
+    transition: transform .15s
+}
+
+.continue:hover {
+    transform: translateY(-2px)
+}
+
+.continue-label {
+    font: 700 .72rem var(--body);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    opacity: .85
+}
+
+.continue strong {
+    font: 800 1rem var(--body)
+}
+
+/* controls */
+.list-controls {
+    display: grid;
+    gap: .7rem;
+    margin: 0 1rem 1rem
+}
+
+.tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: .25rem;
+    border-radius: 2rem;
+    background: var(--panel);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid var(--glass-b);
+    box-shadow: var(--glass-s)
+}
+
+.tabs button {
+    padding: .7rem;
+    border: 0;
+    border-radius: 2rem;
+    background: transparent;
+    color: var(--gold-l);
+    font: 700 .9rem var(--body);
+    cursor: pointer;
+    transition: background .2s, color .2s
+}
+
+.tabs button small {
+    font-weight: 600;
+    opacity: .75;
+    margin-left: .2rem
+}
+
+.tabs button[aria-selected="true"] {
+    background: var(--gold-grad);
+    color: var(--dark);
+    box-shadow: 0 4px 14px rgba(201, 168, 76, .35), inset 0 1px 0 rgba(255, 255, 255, .5)
+}
+
+#search {
+    width: 100%;
+    padding: .85rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 2rem;
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+    font: 500 1rem var(--body);
+    text-align: center
+}
+
+#search::placeholder {
+    color: rgba(255, 255, 255, .7)
+}
+
+#search:focus {
+    outline: none;
+    border-color: var(--gold-l);
+    box-shadow: 0 0 0 3px rgba(230, 207, 133, .35)
+}
+
+/* list (no blur per row, keeps scrolling smooth) */
+.list {
+    list-style: none;
+    margin: 0 1rem;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .7rem
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    padding: .8rem .95rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .04));
+    border: 1px solid var(--glass-b);
+    border-radius: 1.4rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255, 255, 255, .16);
+    color: inherit;
+    text-decoration: none;
+    transition: transform .15s, background .2s, border-color .2s
+}
+
+.item:hover,
+.item:focus-visible {
+    transform: translateY(-2px);
+    background: rgba(201, 168, 76, .16);
+    border-color: var(--gold-l)
+}
+
+.num {
+    flex: none;
+    width: 2.4rem;
+    height: 2.4rem;
+    display: grid;
+    place-items: center;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .06);
+    color: var(--gold-l);
+    font: 800 .85rem var(--body)
+}
+
+.meta {
+    flex: 1;
+    min-width: 0
+}
+
+.meta strong {
+    display: block;
+    font: 700 .95rem var(--body)
+}
+
+.meta span {
+    display: block;
+    margin-top: .15rem;
+    color: var(--muted);
+    font: 500 .78rem var(--body)
+}
+
+.ar {
+    flex: none;
+    font: 700 1.35rem var(--heading-ar);
+    color: var(--gold-l)
+}
+
+.empty {
+    margin: 2rem 1rem;
+    text-align: center;
+    color: var(--gold-l);
+    font: 600 .95rem var(--body)
+}
+
+/* reader bar */
+.reader-bar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .7rem 1rem;
+    background: var(--panel);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid var(--glass-b);
+    box-shadow: var(--glass-s)
+}
+
+.reader-bar h2 {
+    flex: 1;
+    margin: 0;
+    text-align: center;
+    font: 800 1rem var(--body);
+    color: var(--gold-l);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.bar-btn,
+.size-controls button {
+    border: 1px solid var(--glass-b);
+    background: rgba(255, 255, 255, .1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255, 255, 255, .18);
+    color: var(--gold-l);
+    font: 700 .82rem var(--body);
+    cursor: pointer;
+    transition: transform .15s, background .2s, color .2s
+}
+
+.bar-btn {
+    display: inline-block;
+    padding: .6rem 1rem;
+    border-radius: 2rem;
+    text-decoration: none
+}
+
+.bar-btn:hover,
+.size-controls button:hover {
+    background: var(--gold);
+    color: var(--dark);
+    transform: translateY(-1px)
+}
+
+.bar-btn:active,
+.size-controls button:active {
+    transform: scale(.94)
+}
+
+.bar-btn[aria-disabled="true"] {
+    visibility: hidden
+}
+
+.size-controls {
+    display: flex;
+    gap: .3rem
+}
+
+.size-controls button {
+    width: 2.6rem;
+    height: 2.6rem;
+    padding: 0;
+    border-radius: 50%
+}
+
+/* reading card (no blur, so long text stays crisp and fast) */
+.reader {
+    margin: 1rem;
+    padding: 1.3rem 1.2rem 1.7rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .05));
+    border: 1px solid var(--glass-b);
+    border-radius: 2rem;
+    box-shadow: var(--glass-s), inset 0 1px 0 rgba(255, 255, 255, .18);
+    min-height: 40vh
+}
+
+.surah-head {
+    margin: 1.6rem 0 1rem;
+    padding: .9rem 1rem;
+    text-align: center;
+    border: 1.5px solid var(--gold);
+    border-radius: 1.5rem;
+    background: rgba(201, 168, 76, .14);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16)
+}
+
+.surah-head:first-child {
+    margin-top: 0
+}
+
+.surah-head .ar-name {
+    display: block;
+    font: 700 1.9rem/1.4 var(--heading-ar);
+    color: var(--gold-l)
+}
+
+.surah-head .en-name {
+    display: block;
+    color: var(--muted);
+    font: 700 .78rem var(--body);
+    letter-spacing: .06em;
+    text-transform: uppercase
+}
+
+.bismillah {
+    margin: .4rem 0 1rem;
+    text-align: center;
+    font: 400 calc(var(--q-size) * 1.05)/2.2 var(--arabic);
+    color: #fff
+}
+
+.verses {
+    margin: 0;
+    direction: rtl;
+    text-align: justify;
+    text-align-last: right;
+    font: 400 var(--q-size)/2.7 var(--arabic);
+    color: #fff;
+    word-spacing: .08em
+}
+
+.ayah-no {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.7em;
+    height: 1.7em;
+    margin: 0 .3em;
+    padding: 0 .15em;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .06);
+    color: var(--gold-l);
+    font: 700 .5em var(--heading-ar);
+    line-height: 1;
+    vertical-align: middle
+}
+
+.status {
+    padding: 2.5rem 1rem;
+    text-align: center;
+    color: var(--muted);
+    font: 600 .95rem var(--body)
+}
+
+.status button {
+    margin-top: 1rem;
+    padding: .75rem 1.4rem;
+    border: 1px solid rgba(255, 255, 255, .4);
+    border-radius: 2rem;
+    background: var(--gold-grad);
+    box-shadow: 0 6px 18px rgba(201, 168, 76, .35), inset 0 1px 0 rgba(255, 255, 255, .5);
+    color: var(--dark);
+    font: 700 .9rem var(--body);
+    cursor: pointer
+}
+
+.spinner {
+    width: 2rem;
+    height: 2rem;
+    margin: 0 auto 1rem;
+    border: 3px solid rgba(255, 255, 255, .18);
+    border-top-color: var(--gold-l);
+    border-radius: 50%;
+    animation: spin .8s linear infinite
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+.pager {
+    display: flex;
+    justify-content: space-between;
+    gap: .6rem;
+    margin: 0 1rem
+}
+
+@media(max-width:640px) {
+    .list {
+        grid-template-columns: 1fr
+    }
+
+    .reader {
+        margin: .7rem .5rem;
+        padding: 1rem .85rem 1.3rem;
+        border-radius: 1.6rem
+    }
+
+    .reader-header img {
+        width: 3.8rem;
+        height: 3.8rem
+    }
+
+    .verses {
+        text-align: right
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+    .spinner {
+        animation-duration: 2s
+    }
+
+    .continue,
+    .item,
+    .bar-btn,
+    .size-controls button {
+        transition: none
+    }
+}

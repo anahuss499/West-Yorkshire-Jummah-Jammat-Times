@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> The Holy Quran | West Yorkshire Jummah</title>
+    <meta name="description" content="Read the Holy Quran by surah or parah.">
+    <link rel="icon" type="image/png" href="/assets/images/Logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Montserrat:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="quran.css">
+</head>
+
+<body>
+    <nav class="reader-nav" aria-label="Site navigation">
+        <a href="/index.html">Jummah times</a>
+        <a href="/Durood/durood.html">Durood counter</a>
+        <a class="active" href="/quran/quran.html">Quran</a>
+    </nav>
+
+    <!-- LIST VIEW -->
+    <main id="listView" class="view">
+        <header class="reader-header">
+            <img src="/assets/images/Logo.png" alt="Mosque arches">
+            <div>
+                <p class="eyebrow">Read &amp; reflect</p>
+                <h1>The Holy Quran</h1>
+            </div>
+        </header>
+
+        <a id="continueCard" class="continue" href="#" hidden>
+            <span class="continue-label">Continue reading</span>
+            <strong id="continueName"></strong>
+        </a>
+
+        <div class="list-controls">
+            <div class="tabs" role="tablist" aria-label="Browse by">
+                <button type="button" role="tab" id="tabSurah" aria-selected="true" aria-controls="list">Surahs
+                    <small>114</small></button>
+                <button type="button" role="tab" id="tabParah" aria-selected="false" aria-controls="list">Parahs
+                    <small>30</small></button>
+            </div>
+            <input id="search" type="search" placeholder="Search by name or number" aria-label="Search">
+        </div>
+
+        <ul id="list" class="list" role="tabpanel"></ul>
+        <p class="empty" id="empty" hidden>Nothing matches your search.</p>
+    </main>
+
+    <!-- READER VIEW -->
+    <main id="readerView" class="view" hidden>
+        <div class="reader-bar">
+            <a class="bar-btn" href="#" id="backBtn" aria-label="Back to the list">&larr; List</a>
+            <h2 id="barTitle"></h2>
+            <div class="size-controls" role="group" aria-label="Text size">
+                <button type="button" id="smaller" aria-label="Smaller text">A&minus;</button>
+                <button type="button" id="larger" aria-label="Larger text">A+</button>
+            </div>
+        </div>
+
+        <article id="reader" class="reader" aria-live="polite"></article>
+
+        <div class="pager">
+            <a id="prevBtn" class="bar-btn" href="#"></a>
+            <a id="nextBtn" class="bar-btn" href="#"></a>
+        </div>
+    </main>
+
+    <script src="/quran/qurandata.js"></script>
+    <script src="/quran/quran.js"></script>
+</body>
+
+</html>
